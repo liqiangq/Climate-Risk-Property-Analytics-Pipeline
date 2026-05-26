@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Climate Risk Property Analytics</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Climate Risk Property Analytics</h1>
+        <p>Napier property transactions, flood exposure, price index, and model outputs.</p>
+      </div>
+      <button id="refreshButton" type="button">Refresh</button>
+    </header>
+
+    <main>
+      <section class="metrics" aria-label="Dataset summary">
+        <article>
+          <span>Rows</span>
+          <strong id="rowsMetric">-</strong>
+        </article>
+        <article>
+          <span>Date Range</span>
+          <strong id="dateMetric">-</strong>
+        </article>
+        <article>
+          <span>Average Price</span>
+          <strong id="averagePriceMetric">-</strong>
+        </article>
+        <article>
+          <span>Median Price</span>
+          <strong id="medianPriceMetric">-</strong>
+        </article>
+      </section>
+
+      <section class="toolbar" aria-label="Controls">
+        <label>
+          Price index
+          <select id="frequencySelect">
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </label>
+        <label>
+          Flood-zone year
+          <select id="yearSelect">
+            <option value="">All years</option>
+          </select>
+        </label>
+        <label>
+          Model
+          <select id="modelSelect">
+            <option value="did">DiD OLS</option>
+            <option value="ridge">Ridge</option>
+            <option value="ols">Total price OLS</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="grid">
+        <article class="panel chart-panel">
+          <div class="panel-title">
+            <h2>Housing Price Index</h2>
+            <span id="priceIndexStatus"></span>
+          </div>
+          <img id="priceIndexChart" alt="Housing price index chart" />
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-title">
+            <h2>Flood-Zone Counts</h2>
+            <span id="floodZoneStatus"></span>
+          </div>
+          <img id="floodZoneChart" alt="Flood-zone count chart" />
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Model Metrics</h2>
+            <span id="modelStatus"></span>
+          </div>
+          <div id="modelMetrics" class="key-values"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Model Coefficients</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Coefficient</th>
+                </tr>
+              </thead>
+              <tbody id="coefficientRows"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Sample Records</h2>
+          <span id="recordsStatus"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead id="recordsHead"></thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+
